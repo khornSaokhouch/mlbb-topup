@@ -8,6 +8,7 @@ import * as z from 'zod';
 import GlassCard from '@/components/ui/GlassCard';
 import { User, Mail, Lock, ArrowRight, ShieldCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useTranslation } from '@/components/providers/LanguageProvider';
 
 const registerSchema = z.object({
   name: z.string().min(2, 'Name is too short'),
@@ -20,6 +21,7 @@ const registerSchema = z.object({
 });
 
 export default function RegisterPage() {
+  const { t } = useTranslation();
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
     resolver: zodResolver(registerSchema),
   });
@@ -35,8 +37,8 @@ export default function RegisterPage() {
     <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
         <div className="text-center mb-10">
-          <h1 className="text-3xl font-black mb-2 uppercase tracking-tight">Create Account</h1>
-          <p className="text-muted-foreground">Join thousands of gamers getting instant top-ups.</p>
+          <h1 className="text-3xl font-black mb-2 uppercase tracking-tight">{t('registerTitle')}</h1>
+          <p className="text-muted-foreground">{t('registerSubtitle')}</p>
         </div>
 
         <GlassCard className="!p-8">
@@ -46,7 +48,7 @@ export default function RegisterPage() {
                 <User className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5" />
                 <input
                   {...register('name')}
-                  placeholder="John Doe"
+                  placeholder={t('fullName')}
                   className="w-full bg-foreground/5 border border-foreground/10 rounded-xl pl-12 pr-4 py-3 text-foreground focus:outline-none focus:border-primary transition-all"
                 />
               </div>
@@ -54,7 +56,7 @@ export default function RegisterPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-muted-foreground mb-2">Email Address</label>
+              <label className="block text-sm font-medium text-muted-foreground mb-2">{t('emailAddress')}</label>
               <div className="relative">
                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5" />
                 <input
@@ -68,7 +70,7 @@ export default function RegisterPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-muted-foreground mb-2">Password</label>
+              <label className="block text-sm font-medium text-muted-foreground mb-2">{t('password')}</label>
               <div className="relative">
                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5" />
                 <input
@@ -82,7 +84,7 @@ export default function RegisterPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-muted-foreground mb-2">Confirm Password</label>
+              <label className="block text-sm font-medium text-muted-foreground mb-2">{t('confirmPassword')}</label>
               <div className="relative">
                 <ShieldCheck className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5" />
                 <input
@@ -100,13 +102,13 @@ export default function RegisterPage() {
               disabled={isSubmitting}
               className="w-full py-4 rounded-xl bg-primary text-black font-black uppercase hover:shadow-[0_0_15px_rgba(0,229,255,0.5)] transition-all flex items-center justify-center gap-2"
             >
-              Sign Up <ArrowRight className="w-5 h-5" />
+              {t('signUpBtn')} <ArrowRight className="w-5 h-5" />
             </button>
           </form>
         </GlassCard>
 
         <p className="text-center mt-8 text-sm text-muted-foreground">
-          Already have an account? <Link href="/login" className="text-primary font-bold hover:underline">Log in</Link>
+          {t('alreadyHaveAccount')} <Link href="/login" className="text-primary font-bold hover:underline">{t('login')}</Link>
         </p>
       </div>
     </div>

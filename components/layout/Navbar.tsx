@@ -28,15 +28,17 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glass-dark border-b border-foreground/10">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-card/60 backdrop-blur-xl border-b border-border transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center space-x-2">
-              <span className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent neon-text">
-                DIAMONDS<span className="text-foreground">TOPUP</span>
-              </span>
+            <Link href="/" className="flex items-center">
+              <img 
+                src="/logo/logo.png" 
+                alt="Diamonds Topup Logo" 
+                className="h-12 w-12 rounded-full object-cover border border-primary/20 shadow-[0_0_15px_rgba(0,229,255,0.3)]"
+              />
             </Link>
           </div>
 
@@ -57,10 +59,15 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-4">
             <button 
               onClick={toggleLang}
-              className="p-2 rounded-full hover:bg-foreground/5 transition-colors"
-              title="Switch Language"
+              className="flex items-center gap-2 p-1.5 pr-3 rounded-full hover:bg-foreground/5 transition-all border border-border group"
+              title={lang === 'en' ? 'English' : 'ខ្មែរ'}
             >
-              <Globe className="w-5 h-5" />
+              <img 
+                src={`/lang/${lang}.png`} 
+                alt={lang} 
+                className="w-6 h-6 rounded-full object-cover shadow-sm group-hover:scale-110 transition-transform"
+              />
+              <span className="text-xs font-bold uppercase">{lang}</span>
             </button>
             <button 
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
@@ -101,7 +108,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass-dark overflow-hidden"
+            className="md:hidden glass overflow-hidden"
           >
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               {navLinks.map((link) => (
@@ -114,10 +121,14 @@ const Navbar = () => {
                   {link.name}
                 </Link>
               ))}
-              <div className="flex items-center justify-between px-3 py-4 border-t border-foreground/10 mt-2">
-                <button onClick={toggleLang} className="flex items-center space-x-2 text-sm font-medium">
-                  <Globe className="w-5 h-5" />
-                  <span>{lang === 'en' ? 'Khmer' : 'English'}</span>
+              <div className="flex items-center justify-between px-3 py-4 border-t border-border mt-2">
+                <button onClick={toggleLang} className="flex items-center space-x-3 text-sm font-medium p-2 rounded-xl bg-foreground/5 border border-border">
+                  <img 
+                    src={`/lang/${lang === 'en' ? 'km.png' : 'en.png'}`} 
+                    alt="flag" 
+                    className="w-6 h-6 rounded-full object-cover shadow-sm"
+                  />
+                  <span>{lang === 'en' ? 'English' : 'ខ្មែរ'}</span>
                 </button>
                 <Link href="/login" className="text-primary font-bold" onClick={() => setIsOpen(false)}>
                   {t('login')}

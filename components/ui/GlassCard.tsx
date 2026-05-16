@@ -16,7 +16,7 @@ const GlassCard = ({ children, className = '', hover = true, title, onClick }: G
     <motion.div
       onClick={onClick}
       whileHover={hover ? { y: -5, boxShadow: '0 10px 30px -10px rgba(0, 229, 255, 0.2)' } : {}}
-      className={`glass-dark rounded-2xl p-6 relative overflow-hidden group ${className}`}
+      className={`glass rounded-2xl p-6 relative overflow-hidden group ${className}`}
     >
       {/* Background glow effect */}
       <div className="absolute -top-24 -right-24 w-48 h-48 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-500" />

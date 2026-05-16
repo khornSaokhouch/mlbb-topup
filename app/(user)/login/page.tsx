@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 import GlassCard from '@/components/ui/GlassCard';
 import { Globe, Mail, Lock, ArrowRight, Send } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useTranslation } from '@/components/providers/LanguageProvider';
 
 const loginSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -18,6 +19,7 @@ const loginSchema = z.object({
 
 export default function LoginPage() {
   const router = useRouter();
+  const { t } = useTranslation();
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
     resolver: zodResolver(loginSchema),
   });
@@ -45,14 +47,14 @@ export default function LoginPage() {
     <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
         <div className="text-center mb-10">
-          <h1 className="text-3xl font-black mb-2 uppercase tracking-tight">Welcome Back</h1>
-          <p className="text-muted-foreground">Log in to your account to manage your top-ups.</p>
+          <h1 className="text-3xl font-black mb-2 uppercase tracking-tight">{t('loginTitle')}</h1>
+          <p className="text-muted-foreground">{t('loginSubtitle')}</p>
         </div>
 
         <GlassCard className="!p-8">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-muted-foreground mb-2">Email Address</label>
+              <label className="block text-sm font-medium text-muted-foreground mb-2">{t('emailAddress')}</label>
               <div className="relative">
                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5" />
                 <input
@@ -67,8 +69,8 @@ export default function LoginPage() {
 
             <div>
               <div className="flex justify-between items-center mb-2">
-                <label className="block text-sm font-medium text-muted-foreground">Password</label>
-                <Link href="#" className="text-xs text-primary hover:underline">Forgot password?</Link>
+                <label className="block text-sm font-medium text-muted-foreground">{t('password')}</label>
+                <Link href="#" className="text-xs text-primary hover:underline">{t('forgotPassword')}</Link>
               </div>
               <div className="relative">
                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5" />
@@ -87,7 +89,7 @@ export default function LoginPage() {
               disabled={isSubmitting}
               className="w-full py-4 rounded-xl bg-primary text-black font-black uppercase hover:shadow-[0_0_15px_rgba(0,229,255,0.5)] transition-all flex items-center justify-center gap-2"
             >
-              Log In <ArrowRight className="w-5 h-5" />
+              {t('logInBtn')} <ArrowRight className="w-5 h-5" />
             </button>
           </form>
 
@@ -96,7 +98,7 @@ export default function LoginPage() {
               <div className="w-full border-t border-foreground/10"></div>
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-background px-4 text-muted-foreground">Or continue with</span>
+              <span className="bg-background px-4 text-muted-foreground">{t('orContinue')}</span>
             </div>
           </div>
 
@@ -114,7 +116,7 @@ export default function LoginPage() {
         </GlassCard>
 
         <p className="text-center mt-8 text-sm text-muted-foreground">
-          Don&apos;t have an account? <Link href="/register" className="text-primary font-bold hover:underline">Create one</Link>
+          {t('noAccount')} <Link href="/register" className="text-primary font-bold hover:underline">{t('createOne')}</Link>
         </p>
       </div>
     </div>

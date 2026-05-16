@@ -26,12 +26,12 @@ export default function NotFound() {
               <div className="absolute inset-0 bg-primary/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
             
-            <h1 className="text-8xl md:text-9xl font-black mb-4 tracking-tighter bg-gradient-to-b from-foreground to-foreground/30 bg-clip-text text-transparent italic">
+            <h1 className="text-8xl md:text-9xl font-black mb-4 tracking-tighter bg-gradient-to-b from-foreground to-foreground/30 bg-clip-text text-transparent">
               404
             </h1>
             
             <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground uppercase tracking-widest">
-              Lost in the <span className="text-primary italic">Jungle?</span>
+              Lost in the <span className="text-primary">Jungle?</span>
             </h2>
             
             <p className="text-muted-foreground max-w-md mx-auto mb-10 text-lg">

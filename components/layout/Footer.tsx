@@ -9,16 +9,20 @@ const Footer = () => {
   const { t } = useTranslation();
 
   return (
-    <footer className="glass-dark border-t border-foreground/10 pt-16 pb-8">
+    <footer className="relative bg-card/40 backdrop-blur-lg border-t border-border pt-16 pb-8 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="space-y-4">
-            <h2 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent neon-text">
-              DIAMOND<span className="text-foreground">TOPUP</span>
-            </h2>
+            <Link href="/" className="inline-block mb-4">
+              <img 
+                src="/logo/logo.png" 
+                alt="Diamonds Topup Logo" 
+                className="h-16 w-16 rounded-full object-cover border border-primary/20 shadow-[0_0_15px_rgba(0,229,255,0.3)]"
+              />
+            </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              Leading MLBB diamond top-up platform in Cambodia. Fast, secure, and available 24/7.
+              Leading global gaming top-up platform. Fast, secure, and available 24/7 for all your favorite games.
             </p>
             <div className="flex space-x-4">
               <Link href="#" className="p-2 bg-foreground/5 rounded-full hover:bg-primary/20 hover:text-primary transition-all">

@@ -4,8 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
 import AuthProvider from "@/components/providers/AuthProvider";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import FloatingContact from "@/components/ui/FloatingContact";
 
 
 const geistSans = Geist({
@@ -26,12 +25,12 @@ const battambang = Battambang({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXTAUTH_URL || "http://localhost:3000"),
-  title: "DiamondTopUp - Premium MLBB Diamond Top-Up",
-  description: "Fast, secure, and reliable MLBB diamond top-up service in Cambodia.",
+  title: "Mochi Topup - Premium Multi-Game Top-Up",
+  description: "Fast, secure, and reliable top-up service for MLBB, PUBG Mobile, Free Fire, and Honor of Kings in Cambodia.",
   openGraph: {
-    title: "DiamondTopUp",
-    description: "Fast, secure, and reliable MLBB diamond top-up service.",
-    images: ["/og-image.png"],
+    title: "Mochi Topup",
+    description: "Fast, secure, and reliable gaming top-up service.",
+    images: ["/logo/logo.png"],
   },
 };
 
@@ -41,17 +40,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+      <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} ${battambang.variable} antialiased gradient-bg min-h-screen flex flex-col`}>
         <AuthProvider>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <LanguageProvider>
-              <main className="flex-grow">
-                {children}
-              </main>
+              {children}
             </LanguageProvider>
           </ThemeProvider>
         </AuthProvider>
+        <FloatingContact />
       </body>
     </html>
   );

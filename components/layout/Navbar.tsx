@@ -35,7 +35,7 @@ const Navbar = () => {
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center space-x-2">
               <span className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent neon-text">
-                DIAMOND<span className="text-foreground">TOPUP</span>
+                DIAMONDS<span className="text-foreground">TOPUP</span>
               </span>
             </Link>
           </div>

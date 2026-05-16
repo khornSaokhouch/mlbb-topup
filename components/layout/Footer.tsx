@@ -22,7 +22,7 @@ const Footer = () => {
               />
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              Leading global gaming top-up platform. Fast, secure, and available 24/7 for all your favorite games.
+              Your trusted partner for official gaming top-ups in Cambodia. Safe, secure, and instant delivery guaranteed 24/7.
             </p>
             <div className="flex space-x-4">
               <Link href="#" className="p-2 bg-foreground/5 rounded-full hover:bg-primary/20 hover:text-primary transition-all">

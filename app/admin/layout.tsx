@@ -31,11 +31,15 @@ export default function AdminLayout({
   }
 
   return (
-    <div className="flex bg-background min-h-screen">
+    <div className="flex bg-background min-h-screen relative overflow-hidden">
+      {/* Brand Glows */}
+      <div className="fixed top-[-10%] right-[-10%] w-[50%] h-[50%] bg-primary/10 blur-[120px] rounded-full pointer-events-none z-0" />
+      <div className="fixed bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-secondary/5 blur-[120px] rounded-full pointer-events-none z-0" />
+      
       <AdminSidebar />
-      <div className="flex-grow flex flex-col md:ml-64">
+      <div className="flex-grow flex flex-col md:ml-64 relative z-10">
         <AdminHeader />
-        <main className="flex-grow p-8 pt-28 min-h-screen">
+        <main className="flex-grow p-4 md:p-8 pt-28 min-h-screen">
           {children}
         </main>
         <AdminFooter />

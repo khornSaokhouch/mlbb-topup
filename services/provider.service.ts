@@ -12,13 +12,31 @@ export const ProviderService = {
    * returns the user's nickname if valid.
    */
   async validatePlayer(gameId: string, zoneId: string) {
-    // In a real implementation, you would call the provider's validation endpoint.
-    // Mock logic:
     console.log(`Validating Player: ${gameId} (${zoneId})`);
     
-    // Simulate API delay
-    await new Promise(resolve => setTimeout(resolve, 800));
+    // Only use real API for MLBB (assuming MLBB uses zoneId)
+    // If zoneId is provided, we assume it's MLBB validation
+    if (zoneId && zoneId.length > 0) {
+      try {
+        // Call our internal API route which acts as a proxy
+        const response = await axios.get(`/api/validate?id=${gameId}&server=${zoneId}`);
+        
+        if (response.data.success) {
+          return {
+            success: true,
+            nickname: response.data.nickname,
+          };
+        } else {
+          throw new Error(response.data.error || "Player not found");
+        }
+      } catch (err: any) {
+        console.error("Validation error:", err);
+        throw new Error(err.response?.data?.error || "Invalid Player ID or Server ID");
+      }
+    }
 
+    // Default mock logic for other games
+    await new Promise(resolve => setTimeout(resolve, 800));
     if (gameId === 'error') {
       throw new Error('Invalid Player ID');
     }

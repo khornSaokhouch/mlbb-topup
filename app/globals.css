@@ -115,6 +115,15 @@
   background: radial-gradient(circle at 50% -20%, var(--grad-start) 0%, var(--grad-end) 100%);
 }
 
+
 .font-km, .font-battambang {
   font-family: var(--font-battambang);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

@@ -43,6 +43,7 @@ export const authOptions: NextAuthOptions = {
           email: user.email,
           name: user.name,
           role: user.role,
+          walletBalance: user.walletBalance || 0,
         };
       }
     })
@@ -60,8 +61,11 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }: { session: any, token: any }) {
       if (token) {
+        await dbConnect();
+        const user = await User.findById(token.id).select('walletBalance');
         session.user.id = token.id as string;
         session.user.role = token.role as string;
+        session.user.walletBalance = user?.walletBalance || 0;
       }
       return session;
     }

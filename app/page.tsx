@@ -7,8 +7,10 @@ import Footer from '@/components/layout/Footer';
 import { motion } from 'framer-motion';
 import GameCard from '@/components/home/GameCard';
 import Features from '@/components/home/Features';
+import { useTranslation } from '@/components/providers/LanguageProvider';
 
 export default function Home() {
+  const { t } = useTranslation();
   const games = [
     { 
       id: 'mlbb', 
@@ -51,8 +53,8 @@ export default function Home() {
           >
             <div className="flex items-center justify-between mb-12">
               <div>
-                <h2 className="text-3xl font-bold mb-2">Popular game</h2>
-                <p className="text-muted-foreground text-sm">Select your favorite game to top up diamonds and items.</p>
+                <h2 className="text-3xl font-bold mb-2">{t('popularGames')}</h2>
+                <p className="text-muted-foreground text-sm">{t('popularGamesDesc')}</p>
               </div>
               <div className="hidden sm:block">
                 <div className="h-1 w-20 bg-primary/50 relative">

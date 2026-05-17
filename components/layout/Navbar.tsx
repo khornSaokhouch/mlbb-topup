@@ -101,8 +101,14 @@ const Navbar = () => {
             </button>
             {session ? (
               <div className="flex items-center gap-4">
-                <Link href="/dashboard" className="w-10 h-10 rounded-full border border-primary/20 p-0.5 overflow-hidden hover:scale-110 transition-transform shadow-[0_0_15px_rgba(0,229,255,0.2)]">
-                  <img src={session.user?.image || '/logo/logo.png'} alt="Profile" className="w-full h-full rounded-full object-cover" />
+                <Link href="/dashboard" className="flex items-center gap-2 group">
+                  <div className="hidden lg:flex flex-col items-end mr-1">
+                    <span className="text-[10px] font-black uppercase text-muted-foreground tracking-widest leading-none mb-1">Welcome</span>
+                    <span className="text-sm font-bold text-foreground leading-none">{session.user?.name?.split(' ')[0]}</span>
+                  </div>
+                  <div className="w-10 h-10 rounded-full border border-primary/20 p-0.5 overflow-hidden group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(0,229,255,0.2)]">
+                    <img src={session.user?.image || '/logo/logo.png'} alt="Profile" className="w-full h-full rounded-full object-cover" />
+                  </div>
                 </Link>
               </div>
             ) : (

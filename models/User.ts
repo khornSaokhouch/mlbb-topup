@@ -6,6 +6,8 @@ const UserSchema = new Schema({
   password: { type: String },
   image: { type: String },
   role: { type: String, enum: ['user', 'admin'], default: 'user' },
+  telegramId: { type: String, unique: true, sparse: true },
+  username: { type: String },
   walletBalance: { type: Number, default: 0 },
   gameIds: [{
     game: { type: String, default: 'MLBB' },

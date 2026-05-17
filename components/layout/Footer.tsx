@@ -14,12 +14,15 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="space-y-4">
-            <Link href="/" className="inline-block mb-4">
+            <Link href="/" className="flex items-center gap-4 mb-4 group">
               <img 
                 src="/logo/logo.png" 
-                alt="Diamonds Topup Logo" 
-                className="h-16 w-16 rounded-full object-cover border border-primary/20 shadow-[0_0_15px_rgba(0,229,255,0.3)]"
+                alt="Mochi Topup Logo" 
+                className="h-16 w-16 rounded-full object-cover border border-primary/20 shadow-[0_0_15px_rgba(0,229,255,0.3)] group-hover:scale-110 transition-transform duration-300"
               />
+              <span className="text-base font-black tracking-tighter bg-gradient-to-r from-primary via-primary/80 to-primary/50 bg-clip-text text-transparent uppercase">
+                Mochi <span className="text-foreground">Topup</span>
+              </span>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed">
               Your trusted partner for official gaming top-ups in Cambodia. Safe, secure, and instant delivery guaranteed 24/7.
@@ -80,7 +83,7 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-foreground/10 pt-8 text-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} DiamondTopUp. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Mochi Topup. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -6,6 +6,7 @@ import clientPromise from '@/lib/mongodb-client';
 import User from '@/models/User';
 import dbConnect from '@/lib/mongodb';
 import bcrypt from 'bcryptjs';
+import { verifyTelegramHash } from '@/lib/telegram-auth';
 
 export const authOptions: NextAuthOptions = {
   adapter: MongoDBAdapter(clientPromise) as any,
@@ -18,10 +19,51 @@ export const authOptions: NextAuthOptions = {
       name: 'Credentials',
       credentials: {
         email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" }
+        password: { label: "Password", type: "password" },
+        auth_type: { label: "Auth Type", type: "text" },
+        telegram_data: { label: "Telegram Data", type: "text" }
       },
       async authorize(credentials) {
         await dbConnect();
+        
+        // Handle Telegram Login
+        if (credentials?.auth_type === 'telegram') {
+          const telegramData = JSON.parse(credentials.telegram_data);
+          const isValid = verifyTelegramHash(telegramData, process.env.TELEGRAM_BOT_TOKEN!);
+          
+          if (!isValid) {
+            throw new Error('Telegram verification failed');
+          }
+
+          // Find or create user
+          let user = await User.findOne({ 
+            $or: [
+              { email: `${telegramData.id}@telegram.com` },
+              { telegramId: telegramData.id.toString() }
+            ]
+          });
+
+          if (!user) {
+            user = await User.create({
+              name: telegramData.first_name + (telegramData.last_name ? ` ${telegramData.last_name}` : ''),
+              email: `${telegramData.id}@telegram.com`,
+              image: telegramData.photo_url,
+              role: 'user',
+              telegramId: telegramData.id.toString(),
+              username: telegramData.username
+            });
+          }
+
+          return {
+            id: user._id.toString(),
+            email: user.email,
+            name: user.name,
+            role: user.role,
+            walletBalance: user.walletBalance || 0,
+          };
+        }
+
+        // Handle standard Credentials Login
         if (!credentials?.email || !credentials?.password) {
           throw new Error('Invalid credentials');
         }

@@ -35,12 +35,15 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center">
+            <Link href="/" className="flex items-center gap-3 group">
               <img 
                 src="/logo/logo.png" 
-                alt="Diamonds Topup Logo" 
-                className="h-12 w-12 rounded-full object-cover border border-primary/20 shadow-[0_0_15px_rgba(0,229,255,0.3)]"
+                alt="Mochi Topup Logo" 
+                className="h-10 w-10 sm:h-12 sm:w-12 rounded-full object-cover border border-primary/20 shadow-[0_0_15px_rgba(0,229,255,0.3)] group-hover:scale-110 transition-transform duration-300"
               />
+              <span className="text-xs sm:text-sm font-black tracking-tighter bg-gradient-to-r from-primary via-primary/80 to-primary/50 bg-clip-text text-transparent uppercase">
+                Mochi <span className="text-foreground">Topup</span>
+              </span>
             </Link>
           </div>
 

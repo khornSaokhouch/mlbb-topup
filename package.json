@@ -10,6 +10,7 @@
     "db:seed": "node -r ts-node/register lib/dbSeed.ts"
   },
   "dependencies": {
+    "canvas-confetti": "^1.9.4",
     "next": "16.2.6",
     "react": "19.2.4",
     "react-dom": "19.2.4"
@@ -19,6 +20,7 @@
     "@hookform/resolvers": "^5.2.2",
     "@tailwindcss/postcss": "^4",
     "@types/bcryptjs": "^2.4.6",
+    "@types/canvas-confetti": "^1.6.4",
     "@types/mongoose": "^5.11.96",
     "@types/node": "^20.19.41",
     "@types/react": "^19.2.14",

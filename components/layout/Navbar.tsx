@@ -101,7 +101,7 @@ const Navbar = () => {
             </button>
             {session ? (
               <div className="flex items-center gap-4">
-                <Link href="/dashboard" className="flex items-center gap-2 group">
+                <Link href="/profile" className="flex items-center gap-2 group">
                   <div className="hidden lg:flex flex-col items-end mr-1">
                     <span className="text-[10px] font-black uppercase text-muted-foreground tracking-widest leading-none mb-1">Welcome</span>
                     <span className="text-sm font-bold text-foreground leading-none">{session.user?.name?.split(' ')[0]}</span>

@@ -9,6 +9,8 @@ import GlassCard from '@/components/ui/GlassCard';
 import { User, Mail, Lock, ArrowRight, ShieldCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTranslation } from '@/components/providers/LanguageProvider';
+import { useRouter } from 'next/navigation';
+import { signIn, getSession } from 'next-auth/react';
 
 const registerSchema = z.object({
   name: z.string().min(2, 'Name is too short'),
@@ -22,15 +24,49 @@ const registerSchema = z.object({
 
 export default function RegisterPage() {
   const { t } = useTranslation();
+  const router = useRouter();
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
     resolver: zodResolver(registerSchema),
   });
 
   const onSubmit = async (data: any) => {
-    // Mimic registration API call
-    console.log('Registering:', data);
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    alert('Account created! Please log in.');
+    try {
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          password: data.password
+        }),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        throw new Error(result.message || 'Registration failed');
+      }
+
+      // Auto sign in after registration
+      const loginRes = await signIn('credentials', {
+        redirect: false,
+        email: data.email,
+        password: data.password,
+      });
+
+      if (loginRes?.error) {
+        router.push('/login');
+      } else {
+        const session = await getSession();
+        if (session?.user?.role === 'admin') {
+          router.push('/admin');
+        } else {
+          router.push('/');
+        }
+      }
+    } catch (error: any) {
+      alert(error.message);
+    }
   };
 
   return (

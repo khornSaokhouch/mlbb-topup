@@ -35,7 +35,12 @@ export default function LoginPage() {
     if (result?.error) {
       alert(result.error);
     } else {
-      router.push('/auth-success');
+      const session = await getSession();
+      if (session?.user?.role === 'admin') {
+        router.push('/admin');
+      } else {
+        router.push('/');
+      }
     }
   };
 
